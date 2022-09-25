@@ -15,8 +15,14 @@ if __name__ == "__main__":
     age_verification_button.click()
     # driver.execute_script("return arguments[0].click();", age_verification_button)
     # driver.quit()
-    user_selection = ['Brandy', 'Orange Juice']
+    user_selection = ['Brandy', 'Rum', 'Tequila', 'Vodka', 'Whiskey', 'Almond Liquer']
     brandy = 'Brandy'
+    gin = 'Gin'
+    rum = 'Rum'
+    tequila = 'Tequila'
+    vodka = 'Vodka'
+    whiskey = 'Whiskey'
+    almondliqueur = 'Almond Liquer'
     if brandy in user_selection:
         brandy_check = driver.find_element(By.ID,'brandy_checkbox')
         brandy_check.click()
@@ -35,34 +41,34 @@ if __name__ == "__main__":
     if whiskey in user_selection:
         whiskey_check = driver.find_element(By.ID,'whiskey_checkbox')
         whiskey_check.click()
-    if almondliquer in user_selection:
-        almondliquer_check = driver.find_element(By.ID,'almondliquer_checkbox')
-        almondliquer_check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-    if in user_selection:
-        _check = driver.find_element(By.ID,'_checkbox')
-        _check.click()
-gin rum tequila vodka whiskey
+    if almondliqueur in user_selection:
+        almondliqueur_check = driver.find_element(By.ID,'almondliqueur_checkbox')
+        almondliqueur_check.click()
+#     if cherryliqueur in user_selection:
+#         cherryliqueur_check = driver.find_element(By.ID,'cherryliqueur_checkbox')
+#         cherryliqueur_check.click()
+#     if chocolateliqueur in user_selection:
+#         chocolateliqueur_check = driver.find_element(By.ID,'chocolateliqueur_checkbox')
+#         chocolateliqueur_check.click()
+#     if coffeeliqueur in user_selection:
+#         coffeeliqueur_check = driver.find_element(By.ID,'coffeeliqueur_checkbox')
+#         coffeeliqueur_check.click()
+#     if in user_selection:
+#         _check = driver.find_element(By.ID,'_checkbox')
+#         _check.click()
+#     if in user_selection:
+#         _check = driver.find_element(By.ID,'_checkbox')
+#         _check.click()
+#     if in user_selection:
+#         _check = driver.find_element(By.ID,'_checkbox')
+#         _check.click()
+#     if in user_selection:
+#         _check = driver.find_element(By.ID,'_checkbox')
+#         _check.click()
+#     if in user_selection:
+#         _check = driver.find_element(By.ID,'_checkbox')
+#         _check.click()
+# gin rum tequila vodka whiskey
 # import undetected_chromedriver as uc
 # from selenium import webdriver
 # from selenium.webdriver.common.by import By
