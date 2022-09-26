@@ -216,11 +216,61 @@ drink_name_11 = driver.find_element("xpath", '/html/body/section/div[14]/div/div
 matching_ingredients_12 = driver.find_element("xpath", '/html/body/section/div[15]/div/div[3]').text
 drink_name_12 = driver.find_element("xpath", '/html/body/section/div[15]/div/div[1]/h3').text
 
-#await user drink selection
-drink_page_1 = driver.find_element("xpath", '/html/body/section/div[1]/div/a[1]/button')
-drink_page_1.click()
 
-# instructions = driver.find_element(By.CSS_SELECTOR, 'li').text
-instructions = driver.find_element("xpath", '//*[@id="Cocktail_Prep"]/div/table/tbody/tr/td/ol/li').text
-# value = driver.find_element(By.CSS_SELECTOR, ".class a" )
+drink_page_1 = driver.find_element("xpath", '/html/body/section/div[1]/div/a[1]/button')
+drink_page_2 = driver.find_element("xpath", '/html/body/section/div[2]/div/a[1]/button')
+drink_page_3 = driver.find_element("xpath", '/html/body/section/div[3]/div/a[1]/button')
+drink_page_4 = driver.find_element("xpath", '/html/body/section/div[5]/div/a[1]/button')
+drink_page_5 = driver.find_element("xpath", '/html/body/section/div[6]/div/a[1]/button')
+drink_page_6 = driver.find_element("xpath", '/html/body/section/div[7]/div/a[1]/button')
+drink_page_7 = driver.find_element("xpath", '/html/body/section/div[9]/div/a[1]/button')
+drink_page_8 = driver.find_element("xpath", '/html/body/section/div[10]/div/a[1]/button')
+drink_page_9 = driver.find_element("xpath", '/html/body/section/div[11]/div/a[1]/button')
+drink_page_10 = driver.find_element("xpath", '/html/body/section/div[13]/div/a[1]/button')
+drink_page_11 = driver.find_element("xpath", '/html/body/section/div[14]/div/a[1]/button')
+drink_page_12 = driver.find_element("xpath", '/html/body/section/div[15]/div/a[1]/button')
+
+
+#await user drink selection
+user_drink_selection = drink_page_1
+
+
+if user_drink_selection == drink_page_1:
+    drink_page_1.click()
+elif user_drink_selection == drink_page_2:
+    drink_page_2.click
+elif user_drink_selection == drink_page_3:
+    drink_page_3.click
+elif user_drink_selection == drink_page_4:
+    drink_page_4.click
+elif user_drink_selection == drink_page_5:
+    drink_page_5.click
+elif user_drink_selection == drink_page_6:
+    drink_page_6.click
+elif user_drink_selection == drink_page_7:
+    drink_page_7.click
+elif user_drink_selection == drink_page_8:
+    drink_page_8.click
+elif user_drink_selection == drink_page_9:
+    drink_page_9.click
+elif user_drink_selection == drink_page_10:
+    drink_page_10.click
+elif user_drink_selection == drink_page_11:
+    drink_page_11.click
+elif user_drink_selection == drink_page_12:
+    drink_page_12.click
+
+
+p = driver.current_window_handle
+
+#get first child window
+chwd = driver.window_handles
+
+for w in chwd:
+#switch focus to child window
+    if(w!=p):
+        driver.switch_to.window(w)
+
+instructions = driver.find_element("xpath", '//*[@id="Cocktail_Prep"]/div/table/tbody/tr/td/ol').text
+
 print (instructions)

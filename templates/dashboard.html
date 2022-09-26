@@ -5,12 +5,190 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Cocktail Generator</title>
 </head>
 
 <body>
-    <h1>Hello you are logged in.</h1>
     <a href="{{url_for('logout')}}">Press here to logout</a>
+    <h1>Welcome to the Cocktail Generator!</h1>
+    <h2>Please select the Ingredients you have available</h2>
+    <form action="/scraper.py">
+        <label>
+          <span>Alcohol</span>
+          <br>
+        </label>
+        <label>Brandy
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Gin
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Rum
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Tequila
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Vodka
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Whiskey
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Almond Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Cherry Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Chocolate Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Coffee Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Coconut Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Irish Cream Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Herbal Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Mint Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Melon Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Orange Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Peach Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Raspberry Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Sloe Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label> Southern Liqueur
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Bitters
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Champagne
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Dry Vermouth
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Sweet Vermouth
+            <input type="checkbox">
+            <br>
+        </label>
+        <span>Mixers
+            <input type="checkbox">
+            <br>
+        </span>
+        <input type="checkbox">
+        <label>Cola
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Ginger Ale
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Ginger Beer
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Lemon Lime
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Soda Water
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Tonic Water
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Cranberry Juice
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Grapefruit Juice
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Lemon Juice
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Lime Juice
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Orange Juice
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Pineapple Juice
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Cream
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Cream of Coconut
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Grenadine
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Mint Sprig
+            <input type="checkbox">
+            <br>
+        </label>
+        <label>Simple Syrup
+            <input type="checkbox">
+            <br>
+        </label>
+        
+        <button type="submit">Find Your Cocktails</button>
+      </form>
 </body>
 
 </html>
