@@ -1,20 +1,21 @@
-# from selenium import webdriver
+from selenium import webdriver
+#if failing for security authentication on website comment out line above and comment in line below
+# import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
-import undetected_chromedriver as uc
 
 if __name__ == "__main__":
     website = 'https://www.makemycocktail.com/?#HowToMakeACocktail'
-    # DRIVER_PATH = '/Applications/chromedriver'
-    driver = uc.Chrome()
-    # driver = webdriver.Chrome(DRIVER_PATH)
+    DRIVER_PATH = '/Applications/chromedriver'
+    driver = webdriver.Chrome(DRIVER_PATH)
+    #if failing for security authentication on website comment out line above and comment in line below
+    # driver = uc.Chrome()
     driver.get(website)
 
-    # driver.implicitly_wait(10)
-    # age_verification_button = driver.find_elements_by_xpath('//input[@onclick="ageVerification_yes()"]')
+
     age_verification_button = driver.find_element("xpath", '//input[@onclick="ageVerification_yes()"]')
     age_verification_button.click()
-    # driver.execute_script("return arguments[0].click();", age_verification_button)
-    # driver.quit()
+
+
     brandy = 'Brandy'
     gin = 'Gin'
     rum = 'Rum'
@@ -56,7 +57,11 @@ if __name__ == "__main__":
     grenadine = 'Grenadine'
     mintsprig = 'Mint Sprig'
     simplesyrup = 'Simple Syrup'
+
+
     user_selection = ['Brandy', 'Gin', 'Rum', 'Tequila', 'Vodka', 'Whiskey', 'Almond Liqueur', 'Cherry Liqueur', 'Chocolate Liqueur', 'Coffee Liqueur', 'Coconut Liqueur', 'Irish Cream Liqueur', 'Herbal Liqueur', 'Mint Liqueur', 'Melon Liqueur', 'Orange Liqueur', 'Peach Liqueur', 'Raspberry Liqueur', 'Sloe Liqueur', 'Southern Liqueur', 'Bitters', 'Champagne', 'Dry Vermouth', 'Sweet Vermouth', 'Cola', 'Ginger Ale', 'Ginger Beer', 'Lemon Lime', 'Soda Water', 'Tonic Water', 'Cranberry Juice', 'Grapefruit Juice', 'Lemon Juice', 'Lime Juice', 'Orange Juice', 'Pineapple Juice', 'Cream', 'Cream of Coconut', 'Grenadine', 'Mint Sprig', 'Simple Syrup']
+
+
     if brandy in user_selection:
         brandy_check = driver.find_element(By.ID,'brandy_checkbox')
         brandy_check.click()
@@ -180,3 +185,42 @@ if __name__ == "__main__":
     if simplesyrup in user_selection:
         simplesyrup_check = driver.find_element(By.ID,'simplesyrup_checkbox')
         simplesyrup_check.click()
+
+
+find_drinks_button = driver.find_element("xpath", '//input[@value="Make My Cocktail"]')
+find_drinks_button.click()
+
+
+matching_ingredients_1 = driver.find_element("xpath", '/html/body/section/div[1]/div/div[3]').text
+drink_name_1 = driver.find_element("xpath", '/html/body/section/div[1]/div/div[1]/h3').text
+matching_ingredients_2 = driver.find_element("xpath", '/html/body/section/div[2]/div/div[3]').text
+drink_name_2 = driver.find_element("xpath", '/html/body/section/div[2]/div/div[1]/h3').text
+matching_ingredients_3 = driver.find_element("xpath", '/html/body/section/div[3]/div/div[3]').text
+drink_name_3 = driver.find_element("xpath", '/html/body/section/div[3]/div/div[1]/h3').text
+matching_ingredients_4 = driver.find_element("xpath", '/html/body/section/div[5]/div/div[3]').text
+drink_name_4 = driver.find_element("xpath", '/html/body/section/div[5]/div/div[1]/h3').text
+matching_ingredients_5 = driver.find_element("xpath", '/html/body/section/div[6]/div/div[3]').text
+drink_name_5 = driver.find_element("xpath", '/html/body/section/div[6]/div/div[1]/h3').text
+matching_ingredients_6 = driver.find_element("xpath", '/html/body/section/div[7]/div/div[3]').text
+drink_name_6 = driver.find_element("xpath", '/html/body/section/div[7]/div/div[1]/h3').text
+matching_ingredients_7 = driver.find_element("xpath", '/html/body/section/div[9]/div/div[3]').text
+drink_name_7 = driver.find_element("xpath", '/html/body/section/div[9]/div/div[1]/h3').text
+matching_ingredients_8 = driver.find_element("xpath", '/html/body/section/div[10]/div/div[3]').text
+drink_name_8 = driver.find_element("xpath", '/html/body/section/div[10]/div/div[1]/h3').text
+matching_ingredients_9 = driver.find_element("xpath", '/html/body/section/div[11]/div/div[3]').text
+drink_name_9 = driver.find_element("xpath", '/html/body/section/div[11]/div/div[1]/h3').text
+matching_ingredients_10 = driver.find_element("xpath", '/html/body/section/div[13]/div/div[3]').text
+drink_name_10 = driver.find_element("xpath", '/html/body/section/div[13]/div/div[1]/h3').text
+matching_ingredients_11 = driver.find_element("xpath", '/html/body/section/div[14]/div/div[3]').text
+drink_name_11 = driver.find_element("xpath", '/html/body/section/div[14]/div/div[1]/h3').text
+matching_ingredients_12 = driver.find_element("xpath", '/html/body/section/div[15]/div/div[3]').text
+drink_name_12 = driver.find_element("xpath", '/html/body/section/div[15]/div/div[1]/h3').text
+
+#await user drink selection
+drink_page_1 = driver.find_element("xpath", '/html/body/section/div[1]/div/a[1]/button')
+drink_page_1.click()
+
+# instructions = driver.find_element(By.CSS_SELECTOR, 'li').text
+instructions = driver.find_element("xpath", '//*[@id="Cocktail_Prep"]/div/table/tbody/tr/td/ol/li').text
+# value = driver.find_element(By.CSS_SELECTOR, ".class a" )
+print (instructions)
