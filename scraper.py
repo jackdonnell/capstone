@@ -15,7 +15,6 @@ if __name__ == "__main__":
     age_verification_button.click()
     # driver.execute_script("return arguments[0].click();", age_verification_button)
     # driver.quit()
-    user_selection = ['Brandy', 'Gin', 'Rum', 'Tequila', 'Vodka', 'Whiskey', 'Almond Liqueur', 'Cherry Liqueur', 'Chocolate Liqueur', 'Coffee Liqueur', 'Coconut Liqueur', 'Irish Cream Liqueur', 'Herbal Liqueur', 'Mint Liqueur', 'Melon Liqueur', 'Orange Liqueur', 'Peach Liqueur', 'Raspberry Liqueur', 'Sloe Liqueur', 'Southern Liqueur', 'Bitters', 'Champagne', 'Dry Vermouth', 'Sweeet Vermouth', 'Cola', 'Ginger Ale', 'Ginger Beer', 'Lemon Lime', 'Soda Water', 'Tonic Water', 'Cranberry Juice', 'Grapefruit Juice', 'Lemon Juice', 'Lime Juice', 'Orange Juice', 'Pineapple Juice', 'Cream', 'Cream of Coconut', 'Grenadine', 'Mint Sprig', 'Simple Syrup']
     brandy = 'Brandy'
     gin = 'Gin'
     rum = 'Rum'
@@ -55,8 +54,9 @@ if __name__ == "__main__":
     cream = 'Cream'
     creamofcoconut = 'Cream of Coconut'
     grenadine = 'Grenadine'
-    mintsprig = 'Mint Spring'
+    mintsprig = 'Mint Sprig'
     simplesyrup = 'Simple Syrup'
+    user_selection = ['Brandy', 'Gin', 'Rum', 'Tequila', 'Vodka', 'Whiskey', 'Almond Liqueur', 'Cherry Liqueur', 'Chocolate Liqueur', 'Coffee Liqueur', 'Coconut Liqueur', 'Irish Cream Liqueur', 'Herbal Liqueur', 'Mint Liqueur', 'Melon Liqueur', 'Orange Liqueur', 'Peach Liqueur', 'Raspberry Liqueur', 'Sloe Liqueur', 'Southern Liqueur', 'Bitters', 'Champagne', 'Dry Vermouth', 'Sweet Vermouth', 'Cola', 'Ginger Ale', 'Ginger Beer', 'Lemon Lime', 'Soda Water', 'Tonic Water', 'Cranberry Juice', 'Grapefruit Juice', 'Lemon Juice', 'Lime Juice', 'Orange Juice', 'Pineapple Juice', 'Cream', 'Cream of Coconut', 'Grenadine', 'Mint Sprig', 'Simple Syrup']
     if brandy in user_selection:
         brandy_check = driver.find_element(By.ID,'brandy_checkbox')
         brandy_check.click()
@@ -117,6 +117,18 @@ if __name__ == "__main__":
     if southern in user_selection:
         southerncomfort_check = driver.find_element(By.ID,'soco_checkbox')
         southerncomfort_check.click()
+    if bitters in user_selection:
+        bitters_check = driver.find_element(By.ID,'bitters_checkbox')
+        bitters_check.click()
+    if champagne in user_selection:
+        champagne_check = driver.find_element(By.ID,'champagne_checkbox')
+        champagne_check.click()
+    if dryvermouth in user_selection:
+        dryvermouth_check = driver.find_element(By.ID,'vermouthdry_checkbox')
+        dryvermouth_check.click()
+    if sweetvermouth in user_selection:
+        sweetvermouth_check = driver.find_element(By.ID,'vermouthsweet_checkbox')
+        sweetvermouth_check.click()
     if cola in user_selection:
         cola_check = driver.find_element(By.ID,'cola_checkbox')
         cola_check.click()
@@ -168,10 +180,3 @@ if __name__ == "__main__":
     if simplesyrup in user_selection:
         simplesyrup_check = driver.find_element(By.ID,'simplesyrup_checkbox')
         simplesyrup_check.click()
-
-
-# if orangejuice in user_selection:orangejuice_check = driver.find_element(By.ID,'orangejuice_checkbox')
-# orangejuice_check.click()
-
-# if brandy in user_selection:brandy_check = driver.find_element(By.ID,'brandy_checkbox')
-# brandy_check.click()
