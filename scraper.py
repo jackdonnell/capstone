@@ -1,14 +1,14 @@
-from selenium import webdriver
+# from selenium import webdriver
 #if failing for security authentication on website comment out line above and comment in line below
-# import undetected_chromedriver as uc
+import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 
 if __name__ == "__main__":
     website = 'https://www.makemycocktail.com/?#HowToMakeACocktail'
     DRIVER_PATH = '/Applications/chromedriver'
-    driver = webdriver.Chrome(DRIVER_PATH)
+    # driver = webdriver.Chrome(DRIVER_PATH)
     #if failing for security authentication on website comment out line above and comment in line below
-    # driver = uc.Chrome()
+    driver = uc.Chrome()
     driver.get(website)
 
 
@@ -273,4 +273,12 @@ for w in chwd:
 
 instructions = driver.find_element("xpath", '//*[@id="Cocktail_Prep"]/div/table/tbody/tr/td/ol').text
 
-print (instructions)
+# ingredient_name = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div/table/tbody/tr/td[2]').text
+# ingredient_size = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div/table/tbody/tr/td[4]').text
+# //*[@id="Ingredients_Equipment"]/div/table/tbody/tr/td
+#why isnt this working????^^^^^
+# '//*[@id="Ingredients_Equipment"]/div/table[1]/tbody/tr/td[1]').text
+
+ingredients = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div/table[1]/tbody').text
+
+print (instructions, ingredients)
