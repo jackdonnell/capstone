@@ -77,12 +77,13 @@ def login():
 @login_required
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route('/templates/results.html', methods=['GET', 'POST'])
 def results():
     if request.method == 'POST':
         print(request.form.getlist('checkbox'))
         return "done"
     return render_template('results.html')
-
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
