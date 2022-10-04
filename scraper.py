@@ -272,6 +272,8 @@ for w in chwd:
         driver.switch_to.window(w)
 
 instructions = driver.find_element("xpath", '//*[@id="Cocktail_Prep"]/div/table/tbody/tr/td/ol').text
+for i in instructions:
+    index.html = 
 
 # ingredient_name = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div/table/tbody/tr/td[2]').text
 # ingredient_size = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div/table/tbody/tr/td[4]').text
