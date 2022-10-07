@@ -18,13 +18,13 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 user_ingredients = db.Table('user_ingredients',
-    db.Column(db.Integer, primary_key=True),
+    db.Column("id", db.Integer, primary_key=True),
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('ingredients_id', db.Integer, db.ForeignKey('ingredients.id')),
 )
     
 drinks_ingredients = db.Table('drinks_ingredients',
-    db.Column(db.Integer, primary_key=True),
+    db.Column("id",db.Integer, primary_key=True),
     db.Column('drinks_id', db.Integer, db.ForeignKey('drinks.id')),
     db.Column('ingredients_id', db.Integer, db.ForeignKey('ingredients.id'))
 )
@@ -32,28 +32,28 @@ drinks_ingredients = db.Table('drinks_ingredients',
 class Ingredients(db.Model):
     __tablename__ = 'ingredients'
     id = db.Column(db.Integer, primary_key=True),
-    ingredient_name = db.column(db.Varchar(30), unique=True, nullable= False),
-    user_list = db.relationship('user', secondary=user_ingredients),
-    drinks_ings = db.relationship('drinks', secondary=drinks_ingredients)
+    ingredient_name = db.Column(db.String(30), unique=True, nullable= False),
+    user_list = db.relationship('user', secondary=user_ingredients, backref='user_list'),
+    drinks_ings = db.relationship('drinks', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
 
 class Drinks(db.Model):
     __tablename__ = 'drinks'
     id = db.Column(db.Integer, primary_key=True),
-    drink_name = db.Column(db.Varchar(30), unique=True, nullable=False),
-    recipe = db.Column(db.Varchar(1000)),
-    drink_ings = db.relationship('ingredients', secondary=drinks_ingredients)
+    drink_name = db.Column(db.String(30), unique=True, nullable=False),
+    recipe = db.Column(db.String(1000)),
+    drink_ings = db.relationship('ingredients', secondary=drinks_ingredients, backref='ingredients_in_drinks')
+
+class User(db.Model, UserMixin):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(80), nullable=False)
+    ingredient_list = db.relationship('ingredients', secondary=user_ingredients, backref='user_list')
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False, unique=True)
-    password = db.Column(db.String(80), nullable=False)
-
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[
