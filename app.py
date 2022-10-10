@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
-import sqlite3
+# import sqlite3
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -61,8 +61,8 @@ class Ingredients(db.Model):
     __tablename__ = 'ingredients'
     id = db.Column(db.Integer, primary_key=True)
     ingredient_name = db.Column(db.String(30), unique=True, nullable= False)
-    user_list_of_ingredients = db.relationship('user', secondary=user_ingredients, backref='user_list')
-    drinks_ings = db.relationship('drinks', secondary=drinks_ingredients, backref='ingredients_in_drinks')
+    user_list_of_ingredients = db.relationship('User', secondary=user_ingredients, backref='user_list')
+    drinks_ings = db.relationship('Drinks', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
 
 class Drinks(db.Model):
@@ -70,14 +70,14 @@ class Drinks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drink_name = db.Column(db.String(30), unique=True, nullable=False)
     recipe = db.Column(db.String(1000))
-    drink_ings = db.relationship('ingredients', secondary=drinks_ingredients, backref='ingredients_in_drinks')
+    drink_ings = db.relationship('Ingredients', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
-    ingredient_list = db.relationship('ingredients', secondary=user_ingredients, backref='user_list')
+    ingredient_list = db.relationship('Ingredients', secondary=user_ingredients, backref='user_list')
 
 # # you need to commit changes as well
 # connection.commit()
