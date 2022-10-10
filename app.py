@@ -5,17 +5,45 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+import sqlite3
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+# # it will create a databse with name sqlite.db
+# connection= sqlite3.connect('db.sqlite3') 
+# cursor= connection.cursor()
+# table_query = '''CREATE TABLE  if not Exists Student
+#                (Name text, Course text, Age real)'''
+       
+# cursor.execute(table_query)   
+
+# # student list 
+
+# drinks_data = [
+#  ['AlixaProDev','CS',19],
+#  ['Alixawebdev','BBa',21],
+#   ['AskALixa','Software',22]
+# ]
+# insert_q = []
+
+
+# # creating the insert query for each student
+# for std_data in students_data:
+#     name = std_data[0]
+#     course = std_data[1]
+#     age = std_data[2]
+#     q=f"INSERT INTO Student VALUES ('{name}','{course}','{age}')"
+#     insert_q.append(q)
+
+# # executing the insert queries
+# for q in insert_q:
+#     cursor.execute(q)
+
 
 user_ingredients = db.Table('user_ingredients',
     db.Column("id", db.Integer, primary_key=True),
@@ -33,7 +61,7 @@ class Ingredients(db.Model):
     __tablename__ = 'ingredients'
     id = db.Column(db.Integer, primary_key=True)
     ingredient_name = db.Column(db.String(30), unique=True, nullable= False)
-    user_list = db.relationship('user', secondary=user_ingredients, backref='user_list')
+    user_list_of_ingredients = db.relationship('user', secondary=user_ingredients, backref='user_list')
     drinks_ings = db.relationship('drinks', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
 
@@ -50,6 +78,14 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
     ingredient_list = db.relationship('ingredients', secondary=user_ingredients, backref='user_list')
+
+# # you need to commit changes as well
+# connection.commit()
+# # you also need to close  the connection
+# connection.close()
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -133,48 +169,3 @@ def register():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-# from flask import Flask, render_template, request
-# from flask_sqlalchemy import SQLAlchemy 
-
-
-# app = Flask(__name__)
-
-# db = SQLAlchemy(app)
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:sleekbook@127.0.0.1:5000'
-
-
-
-
-# class Users(db.Model):
-#     __tablename__ = 'users'
-#     user_id = db.relationship('Ingredients', secondary='user_ingredients', lazy='subquery', backref=db.backref('ingredients', lazy=True))
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.Varchar(20), unique=True, nullable=False)
-#     email = db.Column(db.Varchar(40), unique=True, nullable=False)
-#     password = db.Column(db.Varchar(20), unique=True, nullable=False)
-#     image_file = db.column(db.String(20), nullable=False, default='default.jpeg')
-
-    # def __repr__(self):
-    #     return f"User('{self.username}', '{self.email}, '{self.image_file})"
-        
-
-# @app.route("/")
-# def index():
-#     return render_template('index.html')
-
-# @app.route("/login")
-# def login():
-#     return render_template('login.html')
-
-# @app.route("/signup")
-# def signup():
-#     return render_template('signup.html')
-
-# if __name__ == '__main__':
-    # app.run(debug=True)
-
-
-
