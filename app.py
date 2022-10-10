@@ -1,3 +1,4 @@
+from email.mime import image
 from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -5,7 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
-# import sqlite3
+import sqlite3
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -14,36 +15,33 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 
 
-# # it will create a databse with name sqlite.db
-# connection= sqlite3.connect('db.sqlite3') 
-# cursor= connection.cursor()
+# it will create a databse with name sqlite.db
+connection= sqlite3.connect('db.sqlite3') 
+cursor= connection.cursor()
 # table_query = '''CREATE TABLE  if not Exists Student
 #                (Name text, Course text, Age real)'''
        
 # cursor.execute(table_query)   
 
-# # student list 
+# student list 
 
-# drinks_data = [
-#  ['AlixaProDev','CS',19],
-#  ['Alixawebdev','BBa',21],
-#   ['AskALixa','Software',22]
-# ]
-# insert_q = []
+drinks_data = [
+ ['Mimosa',"Chill your champagne flute before preparing the cocktail\nPour the champagne and orange juice directly into the champagne flute\nLastly, garnish your cocktail with an orange wedge","https://www.makemycocktail.com/images/cocktails/Mimosa.jpg?ezimgfmt=rs:383x511/rscb9/ngcb9/notWebP","3 oz. Orange Juice, 3 oz. Champagne"]
+]
+insert_q = []
 
+# creating the insert query for each student
+for data in drinks_data:
+    name = data[0]
+    recipe = data[1]
+    img = data[2]
+    ingredients = data[3]
+    q=f"INSERT INTO drinks VALUES ('{name}','{recipe}','{img}','{ingredients}')"
+    insert_q.append(q)
 
-# # creating the insert query for each student
-# for std_data in students_data:
-#     name = std_data[0]
-#     course = std_data[1]
-#     age = std_data[2]
-#     q=f"INSERT INTO Student VALUES ('{name}','{course}','{age}')"
-#     insert_q.append(q)
-
-# # executing the insert queries
-# for q in insert_q:
-#     cursor.execute(q)
-
+# executing the insert queries
+for q in insert_q:
+    cursor.execute(q)
 
 user_ingredients = db.Table('user_ingredients',
     db.Column("id", db.Integer, primary_key=True),
@@ -61,6 +59,7 @@ class Ingredients(db.Model):
     __tablename__ = 'ingredients'
     id = db.Column(db.Integer, primary_key=True)
     ingredient_name = db.Column(db.String(30), unique=True, nullable= False)
+    image = db.Column(db.String(100))
     user_list_of_ingredients = db.relationship('User', secondary=user_ingredients, backref='user_list')
     drinks_ings = db.relationship('Drinks', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
@@ -70,6 +69,7 @@ class Drinks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drink_name = db.Column(db.String(30), unique=True, nullable=False)
     recipe = db.Column(db.String(1000))
+    image = db.Column(db.String(100))
     drink_ings = db.relationship('Ingredients', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
 class User(db.Model, UserMixin):
@@ -140,6 +140,7 @@ def dashboard():
 
 
 @app.route('/templates/results.html', methods=['GET', 'POST'])
+@login_required
 def results():
     if request.method == 'POST':
         print(request.form.getlist('checkbox'))
