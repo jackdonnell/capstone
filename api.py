@@ -119,3 +119,30 @@ drink_ids = ["17222",
 "14560",
 "15024",
 "16100",]
+
+# # it will create a databse with name sqlite.db
+# connection= sqlite3.connect('db.sqlite3') 
+# cursor= connection.cursor()
+
+# drinks_data = [
+#  ['Mimosa',"Chill your champagne flute before preparing the cocktail\nPour the champagne and orange juice directly into the champagne flute\nLastly, garnish your cocktail with an orange wedge","https://www.makemycocktail.com/images/cocktails/Mimosa.jpg?ezimgfmt=rs:383x511/rscb9/ngcb9/notWebP","3 oz. Orange Juice, 3 oz. Champagne"]
+# ]
+# insert_q = []
+
+# # creating the insert query for each student
+# for data in drinks_data:
+#     name = data[0]
+#     recipe = data[1]
+#     img = data[2]
+#     ingredients = data[3]
+#     q=f"INSERT INTO Drinks VALUES ('{name}','{recipe}','{img}', '{ingredients}';"
+#     insert_q.append(q)
+
+# # executing the insert queries
+# for q in insert_q:
+#     cursor.execute(q)
+
+# # you need to commit changes as well
+# connection.commit()
+# # you also need to close  the connection
+# connection.close()

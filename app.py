@@ -8,40 +8,14 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 import sqlite3
 
+
 app = Flask(__name__)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SECRET_KEY'] = 'thisisasecretkey'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
-# it will create a databse with name sqlite.db
-connection= sqlite3.connect('db.sqlite3') 
-cursor= connection.cursor()
-# table_query = '''CREATE TABLE  if not Exists Student
-#                (Name text, Course text, Age real)'''
-       
-# cursor.execute(table_query)   
-
-# student list 
-
-drinks_data = [
- ['Mimosa',"Chill your champagne flute before preparing the cocktail\nPour the champagne and orange juice directly into the champagne flute\nLastly, garnish your cocktail with an orange wedge","https://www.makemycocktail.com/images/cocktails/Mimosa.jpg?ezimgfmt=rs:383x511/rscb9/ngcb9/notWebP","3 oz. Orange Juice, 3 oz. Champagne"]
-]
-insert_q = []
-
-# creating the insert query for each student
-for data in drinks_data:
-    name = data[0]
-    recipe = data[1]
-    img = data[2]
-    ingredients = data[3]
-    q=f"INSERT INTO drinks VALUES ('{name}','{recipe}','{img}','{ingredients}')"
-    insert_q.append(q)
-
-# executing the insert queries
-for q in insert_q:
-    cursor.execute(q)
 
 user_ingredients = db.Table('user_ingredients',
     db.Column("id", db.Integer, primary_key=True),
@@ -63,7 +37,6 @@ class Ingredients(db.Model):
     user_list_of_ingredients = db.relationship('User', secondary=user_ingredients, backref='user_list')
     drinks_ings = db.relationship('Drinks', secondary=drinks_ingredients, backref='ingredients_in_drinks')
 
-
 class Drinks(db.Model):
     __tablename__ = 'drinks'
     id = db.Column(db.Integer, primary_key=True)
@@ -79,10 +52,6 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     ingredient_list = db.relationship('Ingredients', secondary=user_ingredients, backref='user_list')
 
-# # you need to commit changes as well
-# connection.commit()
-# # you also need to close  the connection
-# connection.close()
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
