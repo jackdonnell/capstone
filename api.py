@@ -146,3 +146,34 @@ drink_ids = ["17222",
 # connection.commit()
 # # you also need to close  the connection
 # connection.close()
+
+
+
+>> from app import *
+>>> orange = Ingredients(ingredient_name='Orange', image='dsfwd')
+>>> db.session.add(orange)
+>>> db.session.commit()
+>>> screwdriver= Drinks(drink_name='Screwdriver', recipe='asjkdhfbakjsd', image='alsdfjhads') 
+>>> db.session.add(screwdriver)
+>>> db.session.commit()                                                                        
+>>> ing1 = Drink_ingredients(drink_id=screwdriver.id, ingredient_id=orange.id)
+>>> db.session.add(ing1)
+>>> db.session.commit()
+>>> ing_ids = Drink_ingredients.query.filter_by(drink_id=screwdriver.id)
+>>> ing_ids = Drink_ingredients.query.filter_by(drink_id=screwdriver.id).all()
+>>> print(ing_ids)
+[<Drink_ingredients 1>]
+>>> ingredients= []
+>>> for i in ing_ids:
+...     ingredients.append(Ingredients.query.filter_by(id=i.ingredient_id).first())
+...
+... )
+  File "<stdin>", line 4
+    )
+    ^
+SyntaxError: unmatched ')'
+>>> for i in ing_ids:
+     ingredients.append(Ingredients.query.filter_by(id=i.ingredient_id).first())
+
+print(ingredients)
+[<Ingredients 1>]
