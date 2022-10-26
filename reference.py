@@ -29,7 +29,7 @@ a = Drink_ingredients(drink_id=texas_tea.id, ingredient_id=vodka.id)
 print(ingredients)
 [<Ingredients 1>]
 
-User.query.filter_by(id=123).delete()
+Drink_ingredients.query.filter_by(id=).delete()
 
 # texas_tea= Drinks(drink_name='Texas Tea', recipe='Fill your highball glass with ice. Fill your cocktail shaker 2/3 full with cracked ice. Pour .5oz gin, .05oz vodka, .05oz tequila, .05oz rum, .05 oz whiskey, .75oz lemon juice, .75oz simple syrup into the cocktail shaker. Shake your cocktail for 10-15 seconds. Strain the shaker contents into the highball glass. Top off the glass with cola. Gently stir with a straw. Lastly, garnish your cocktail with a lemon wedge', image='https://www.makemycocktail.com/images/cocktails/TexasTea.jpg')
 # champagne_pick_me_up= Drinks(drink_name='Champagne Pick-Me-Up', recipe='Chill your champagne flute before preparing the cocktail. Fill a shaker 2/3 full with cracked ice. Add 1oz brndy, 1.5oz orange juice and .25oz simple syrup to the shaker. Shake your cocktail for 10-15 seconds. Strain the shaker contents into the champagne flute. Top off the flute with 3.5oz champagne. Lastly, garnish your cocktail with an orange twist', image='https://www.makemycocktail.com/images/cocktails/ChampagnePickMeUp.jpg')

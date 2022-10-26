@@ -197,11 +197,19 @@ def add_ing_to_drink(drink_name, ingredient_name):
     if drink == None or ingredient == None:
         print('drink or ing failed')
         return
-    drink_ing= Drink_ingredients(drink_id=drink.id, ingredient_id=ingredient.id)
-    db.session.add(drink_ing)
-    db.session.commit()
-
-add_ing_to_drink('Texas Tea','Rum')
+    try:
+        drink_ing= Drink_ingredients(drink_id=drink.id, ingredient_id=ingredient.id)
+        db.session.add(drink_ing)
+        db.session.commit()
+    except:
+        print('failed')
+# add_ing_to_drink('Texas Tea','Lemon')
+# add_ing_to_drink('Texas Tea','Simple Syrup')
+# add_ing_to_drink('Texas Tea','Coke')
+# add_ing_to_drink('Champagne Pick-Me-Up','Brandy')
+# add_ing_to_drink('Champagne Pick-Me-Up','Orange')
+# add_ing_to_drink('Champagne Pick-Me-Up','Simple Syrup')
+# add_ing_to_drink('Champagne Pick-Me-Up','Champagne')
 
 def get_ings_for_drink(drink_name):
     drink= Drinks.query.filter_by(drink_name=drink_name).first()
