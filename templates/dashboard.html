@@ -11,7 +11,7 @@
     <a href="{{url_for('logout')}}">Press here to logout</a>
     <h1>Welcome to the Cocktail Generator!</h1>
     <h2>Please select the Ingredients you have available</h2>
-    <form action="/templates/results.html">
+        <form method='POST' action="/drinkresults">
         <label>
           <span>Alcohol</span>
           <br>
@@ -19,95 +19,90 @@
         </label>
         <label>Brandy
             <input type="checkbox"
-            name="checkbox" value="1">
+            name="ing_checkbox" value="1">
             <br>
         </label>
         <label>Gin
             <input type="checkbox"
-            name="checkbox" value="2">
+            name="ing_checkbox" value="2">
             <br>
         </label>
         <label>Rum
             <input type="checkbox"
-            name="checkbox" value="3">
+            name="ing_checkbox" value="3">
             <br>
         </label>
         <label>Tequila
             <input type="checkbox"
-            name="checkbox" value="4">
+            name="ing_checkbox" value="4">
             <br>
         </label>
         <label>Vodka
             <input type="checkbox"
-            name="checkbox" value="5">
+            name="ing_checkbox" value="5">
             <br>
         </label>
         <label>Whiskey
             <input type="checkbox"
-            name="checkbox" value="6">
+            name="ing_checkbox" value="6">
             <br>
         </label>
         <label>Bitters
             <input type="checkbox"
-            name="checkbox" value="21">
+            name="ing_checkbox" value="7">
             <br>
         </label>
         <label>Champagne
             <input type="checkbox"
-            name="checkbox" value="22">
-            <br>
-        </label>
-        <label>Dry Vermouth
-            <input type="checkbox"
-            name="checkbox" value="23">
+            name="ing_checkbox" value="8">
             <br>
         </label>
         <span>Mixers
             <br>
             <br>
         </span>
-        <label>Cola
+        <label>Coke
             <input type="checkbox"
-            name="checkbox" value="25">
+            name="ing_checkbox" value="9">
             <br>
         </label>
         <label>Ginger Ale
             <input type="checkbox"
-            name="checkbox" value="26">
+            name="ing_checkbox" value="10">
             <br>
         </label>
-        <label>Tonic Water
+        <label>Soda Water
             <input type="checkbox"
-            name="checkbox" value="30">
+            name="ing_checkbox" value="11">
             <br>
         </label>
-        <label>Lemon
+        <label>Lemon Juice
             <input type="checkbox"
-            name="checkbox" value="33">
+            name="ing_checkbox" value="12">
             <br>
         </label>
-        <label>Lime
+        <label>Lime Juice
             <input type="checkbox"
-            name="checkbox" value="34">
+            name="ing_checkbox" value="13">
             <br>
         </label>
         <label>Orange Juice
             <input type="checkbox"
-            name="checkbox" value="35">
+            name="ing_checkbox" value="14">
             <br>
         </label>
         <label>Pineapple Juice
             <input type="checkbox"
-            name="checkbox" value="36">
+            name="ing_checkbox" value="15">
             <br>
         </label>
         <label>Simple Syrup
             <input type="checkbox"
-            name="checkbox" value="41">
+            name="ing_checkbox" value="16">
             <br>
         </label>
         <br>
-        <button type="submit">Find Your Cocktails</button>
+        <input type="submit">Find Your Cocktails</input>
       </form>
 </body>
 

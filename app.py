@@ -9,6 +9,7 @@ from flask_bcrypt import Bcrypt
 import sqlite3
 
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SECRET_KEY'] = 'thisisasecretkey'
@@ -101,12 +102,11 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route('/templates/results.html', methods=['GET', 'POST'])
+@app.route('/drinkresults', methods=['GET', 'POST'])
 @login_required
 def results():
     if request.method == 'POST':
-        print(request.form.getlist('checkbox'))
-        return "done"
+        print(request.form.getlist('ing_checkbox'))
     return render_template('results.html')
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -191,6 +191,33 @@ simple_syrup = Ingredients(ingredient_name='Simple Syrup', image='https://www.ma
 bitters = Ingredients(ingredient_name='Bitters', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Bitters.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
 champagne = Ingredients(ingredient_name='Champagne', image='https://www.makemycocktail.com/images/ingredient/Wine/Wine_Champagne.jpg?ezimgfmt=rs:36x100/rscb9/ng:webp/ngcb9')
 
+def add_ing_to_drink(drink_name, ingredient_name):
+    drink= Drinks.query.filter_by(drink_name=drink_name).first()
+    ingredient= Ingredients.query.filter_by(ingredient_name=ingredient_name).first()
+    if drink == None or ingredient == None:
+        print('drink or ing failed')
+        return
+    drink_ing= Drink_ingredients(drink_id=drink.id, ingredient_id=ingredient.id)
+    db.session.add(drink_ing)
+    db.session.commit()
+
+add_ing_to_drink('Texas Tea','Rum')
+
+def get_ings_for_drink(drink_name):
+    drink= Drinks.query.filter_by(drink_name=drink_name).first()
+    results= Drink_ingredients.query.filter_by(drink_id=drink.id).all()
+    ings_in_drink=[]
+    for i in results:
+        ings_in_drink.append(Ingredients.query.filter_by(id=i.ingredient_id).first().ingredient_name)
+    return ings_in_drink
+
+def find_cocktails(ingredients):
+    matching_drinks = []
+    for i in Drinks.query.all():
+        ings= get_ings_for_drink(i.drink_name)
+        if set(ings).issubset(set(ingredients)):
+            matching_drinks.append(i)
+    return(matching_drinks)
 
 if __name__ == "__main__":
     app.run(debug=True)
