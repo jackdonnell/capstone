@@ -277,3 +277,5 @@ instructions = driver.find_element("xpath", '//*[@id="Cocktail_Prep"]/div/table/
 ingredients = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div/table[1]/tbody').text
 
 print (instructions, ingredients)
+
+

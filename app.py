@@ -16,26 +16,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-
-# user_ingredients = db.Table('user_ingredients',
-#     db.Column("id", db.Integer, primary_key=True),
-#     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-#     db.Column('ingredients_id', db.Integer, db.ForeignKey('ingredients.id'))
-# )
-    
-# drinks_ingredients = db.Table('drinks_ingredients',
-#     db.Column("id",db.Integer, primary_key=True),
-#     db.Column('drinks_id', db.Integer, db.ForeignKey('drinks.id')),
-#     db.Column('ingredients_id', db.Integer, db.ForeignKey('ingredients.id'))
-# )
-
 class Ingredients(db.Model):
     __tablename__ = 'ingredients'
     id = db.Column(db.Integer, primary_key=True)
     ingredient_name = db.Column(db.String(30), unique=True, nullable= False)
     image = db.Column(db.String(100))
-    # user_list_of_ingredients = db.relationship('User', secondary=user_ingredients, backref='user_list')
-    # drinks_ings = db.relationship('Drinks', secondary=drinks_ingredients, backref='ingredients')
 
 class Drinks(db.Model):
     __tablename__ = 'drinks'
@@ -43,14 +28,12 @@ class Drinks(db.Model):
     drink_name = db.Column(db.String(30), unique=True, nullable=False)
     recipe = db.Column(db.String(1000))
     image = db.Column(db.String(100))
-    # drink_ings = db.relationship('Ingredients', secondary=drinks_ingredients, backref='drinks')
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
-    # ingredient_list = db.relationship('Ingredients', secondary=user_ingredients, backref='user_list')
 
 class User_ingredients(db.Model):
     id = db.Column(db.Integer, primary_key=True)
