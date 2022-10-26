@@ -173,6 +173,9 @@ for i in ing_ids:
 >>> db.session.commit()
 >>> ing_ids = Drink_ingredients.query.filter_by(drink_id=screwdriver.id)
 >>> ing_ids = Drink_ingredients.query.filter_by(drink_id=screwdriver.id).all()
+
+a = Drink_ingredients(drink_id=texas_tea.id, ingredient_id=gin.id)
+
 >>> print(ing_ids)
 [<Drink_ingredients 1>]
 >>> ingredients= []
@@ -186,6 +189,8 @@ for i in ing_ids:
 
 print(ingredients)
 [<Ingredients 1>]
+
+User.query.filter_by(id=123).delete()
 
 texas_tea= Drinks(drink_name='Texas Tea', recipe='Fill your highball glass with ice. Fill your cocktail shaker 2/3 full with cracked ice. Pour .5oz gin, .05oz vodka, .05oz tequila, .05oz rum, .05 oz whiskey, .75oz lemon juice, .75oz simple syrup into the cocktail shaker. Shake your cocktail for 10-15 seconds. Strain the shaker contents into the highball glass. Top off the glass with cola. Gently stir with a straw. Lastly, garnish your cocktail with a lemon wedge', image='https://www.makemycocktail.com/images/cocktails/TexasTea.jpg')
 champagne_pick_me_up= Drinks(drink_name='Champagne Pick-Me-Up', recipe='Chill your champagne flute before preparing the cocktail. Fill a shaker 2/3 full with cracked ice. Add 1oz brndy, 1.5oz orange juice and .25oz simple syrup to the shaker. Shake your cocktail for 10-15 seconds. Strain the shaker contents into the champagne flute. Top off the flute with 3.5oz champagne. Lastly, garnish your cocktail with an orange twist', image='https://www.makemycocktail.com/images/cocktails/ChampagnePickMeUp.jpg')
@@ -232,3 +237,21 @@ vodka_gimlet = Drinks(drink_name='Vodka Gimlet', recipe='Chill your coupe glass 
 vodka_highball = Drinks(drink_name='Vodka Highball', recipe='Fill your highball glass with ice. Pour 2oz vodka directly into the glass. Top off the glass with 5oz ginger ale. Lastly, garnish your cocktail with a lime wedge', image='https://www.makemycocktail.com/images/cocktails/VodkaHighball.jpg')
 whiskey_cola= Drinks(drink_name='Whiskey & Cola', recipe='Fill your highball glass with ice. Pour 2oz whiskey directly into the glass. Top off the glass with 5oz cola. Lastly, garnish your cocktail with a lime wedge', image='https://www.makemycocktail.com/images/cocktails/WhiskeyCola.jpg')
 whiskey_highball= Drinks(drink_name='Whiskey Highball', recipe='Fill your highball glass with ice. Pour 2oz whiskey directly into the glass. Top off the glass with 5oz ginger ale. Lastly, garnish your cocktail with a lemon wedge', image='https://www.makemycocktail.com/images/cocktails/WhiskeyHighball.jpg')
+
+gin = Ingredients(ingredient_name='Gin', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Gin.jpg?ezimgfmt=rs:43x100/rscb9/ng:webp/ngcb9')
+rum = Ingredients(ingredient_name='Rum', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Rum.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
+vodka = Ingredients(ingredient_name='Vodka', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Vodka.jpg?ezimgfmt=rs:32x100/rscb9/ng:webp/ngcb9')
+whiskey = Ingredients(ingredient_name='Whiskey', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Whiskey.jpg?ezimgfmt=rs:39x100/rscb9/ng:webp/ngcb9')
+tequila = Ingredients(ingredient_name='Tequila', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Tequila.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
+coke = Ingredients(ingredient_name='Coke', image='https://www.makemycocktail.com/images/ingredient/Carbonated/Carbonated_Cola.jpg?ezimgfmt=rs:55x100/rscb9/ng:webp/ngcb9')
+ginger_ale = Ingredients(ingredient_name='Ginger Ale', image='https://www.makemycocktail.com/images/ingredient/Carbonated/Carbonated_Gingerale.jpg?ezimgfmt=rs:54x100/rscb9/ng:webp/ngcb9')
+soda_water = Ingredients(ingredient_name='Soda Water', image='https://www.makemycocktail.com/images/ingredient/Carbonated/Carbonated_Sodawater.jpg?ezimgfmt=rs:54x100/rscb9/ng:webp/ngcb9')
+lemon = Ingredients(ingredient_name='Lemon', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Lemonjuice.jpg?ezimgfmt=rs:135x86/rscb9/ng:webp/ngcb9')
+lime = Ingredients(ingredient_name='Lime', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Limejuice.jpg?ezimgfmt=rs:135x89/rscb9/ng:webp/ngcb9')
+orange = Ingredients(ingredient_name='Orange', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Orangejuice.jpg?ezimgfmt=rs:135x92/rscb9/ng:webp/ngcb9')
+pineapple = Ingredients(ingredient_name='Pineapple', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Pineapplejuice.jpg?ezimgfmt=rs:118x100/rscb9/ng:webp/ngcb9')
+simple_syrup = Ingredients(ingredient_name='Simple Syrup', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Simplesyrup.jpg?ezimgfmt=rs:30x100/rscb9/ng:webp/ngcb9')
+bitters = Ingredients(ingredient_name='Bitters', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Bitters.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
+champagne= Ingredients(ingredient_name='Champagne', image='https://www.makemycocktail.com/images/ingredient/Wine/Wine_Champagne.jpg?ezimgfmt=rs:36x100/rscb9/ng:webp/ngcb9')
+
+q = Drink_ingredients(drink_id=.id, ingredient_id=.id)

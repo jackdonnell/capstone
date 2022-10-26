@@ -279,3 +279,20 @@ ingredients = driver.find_element("xpath", '//*[@id="Ingredients_Equipment"]/div
 print (instructions, ingredients)
 
 
+
+gin = Ingredients(ingredient_name='Gin', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Gin.jpg?ezimgfmt=rs:43x100/rscb9/ng:webp/ngcb9')
+rum = Ingredients(ingredient_name='Rum', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Rum.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
+vodka = Ingredients(ingredient_name='Vodka', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Vodka.jpg?ezimgfmt=rs:32x100/rscb9/ng:webp/ngcb9')
+whiskey = Ingredients(ingredient_name='Whiskey', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Whiskey.jpg?ezimgfmt=rs:39x100/rscb9/ng:webp/ngcb9')
+tequila = Ingredients(ingredient_name='Tequila', image='https://www.makemycocktail.com/images/ingredient/Spirit/Spirit_Tequila.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
+coke = Ingredients(ingredient_name='Coke', image='https://www.makemycocktail.com/images/ingredient/Carbonated/Carbonated_Cola.jpg?ezimgfmt=rs:55x100/rscb9/ng:webp/ngcb9')
+ginger_ale = Ingredients(ingredient_name='Ginger Ale', image='https://www.makemycocktail.com/images/ingredient/Carbonated/Carbonated_Gingerale.jpg?ezimgfmt=rs:54x100/rscb9/ng:webp/ngcb9')
+soda_water = Ingredients(ingredient_name='Soda Water', image='https://www.makemycocktail.com/images/ingredient/Carbonated/Carbonated_Sodawater.jpg?ezimgfmt=rs:54x100/rscb9/ng:webp/ngcb9')
+
+lemon = Ingredients(ingredient_name='Lemon', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Lemonjuice.jpg?ezimgfmt=rs:135x86/rscb9/ng:webp/ngcb9')
+lime = Ingredients(ingredient_name='Lime', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Limejuice.jpg?ezimgfmt=rs:135x89/rscb9/ng:webp/ngcb9')
+orange = Ingredients(ingredient_name='Orange', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Orangejuice.jpg?ezimgfmt=rs:135x92/rscb9/ng:webp/ngcb9')
+pineapple = Ingredients(ingredient_name='Pineapple', image='https://www.makemycocktail.com/images/ingredient/Juice/Juice_Pineapplejuice.jpg?ezimgfmt=rs:118x100/rscb9/ng:webp/ngcb9')
+simple_syrup = Ingredients(ingredient_name='Simple Syrup', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Simplesyrup.jpg?ezimgfmt=rs:30x100/rscb9/ng:webp/ngcb9')
+bitters = Ingredients(ingredient_name='Bitters', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Bitters.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
+champagne= Ingredients(ingredient_name='Champagne', image='https://www.makemycocktail.com/images/ingredient/Wine/Wine_Champagne.jpg?ezimgfmt=rs:36x100/rscb9/ng:webp/ngcb9')
