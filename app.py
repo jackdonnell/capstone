@@ -102,13 +102,6 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route('/drinkresults', methods=['GET', 'POST'])
-@login_required
-def results():
-    if request.method == 'POST':
-        print(request.form.getlist('ing_checkbox'))
-    return render_template('results.html')
-
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -128,6 +121,44 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
+
+@app.route('/drinkresults', methods=['GET', 'POST'])
+@login_required
+def results():
+    if request.method == 'POST':
+        print(request.form.getlist('ing_checkbox'))
+        drink_results = find_cocktails(request.form.getlist('ing_checkbox'))
+        return render_template('results.html', drink_results=drink_results)
+
+def find_cocktails(user_ingredients):
+    matching_drinks = []
+    for i in Drinks.query.all():
+        ings= get_ings_for_drink(i.drink_name)
+        if set(ings).issubset(set(user_ingredients)):
+            matching_drinks.append(i)
+    print(matching_drinks)
+    return(matching_drinks)
+
+def get_ings_for_drink(drink_name):
+    drink= Drinks.query.filter_by(drink_name=drink_name).first()
+    results= Drink_ingredients.query.filter_by(drink_id=drink.id).all()
+    ings_in_drink=[]
+    for i in results:
+        ings_in_drink.append(Ingredients.query.filter_by(id=i.ingredient_id).first().ingredient_name)
+    return ings_in_drink
+
+def add_ing_to_drink(drink_name, ingredient_name):
+    drink= Drinks.query.filter_by(drink_name=drink_name).first()
+    ingredient= Ingredients.query.filter_by(ingredient_name=ingredient_name).first()
+    if drink == None or ingredient == None:
+        print('drink or ing failed')
+        return
+    try:
+        drink_ing= Drink_ingredients(drink_id=drink.id, ingredient_id=ingredient.id)
+        db.session.add(drink_ing)
+        db.session.commit()
+    except:
+        print('failed')
 
 texas_tea = Drinks(drink_name='Texas Tea', recipe='Fill your highball glass with ice. Fill your cocktail shaker 2/3 full with cracked ice. Pour .5oz gin, .05oz vodka, .05oz tequila, .05oz rum, .05 oz whiskey, .75oz lemon juice, .75oz simple syrup into the cocktail shaker. Shake your cocktail for 10-15 seconds. Strain the shaker contents into the highball glass. Top off the glass with cola. Gently stir with a straw. Lastly, garnish your cocktail with a lemon wedge', image='https://www.makemycocktail.com/images/cocktails/TexasTea.jpg')
 champagne_pick_me_up= Drinks(drink_name='Champagne Pick-Me-Up', recipe='Chill your champagne flute before preparing the cocktail. Fill a shaker 2/3 full with cracked ice. Add 1oz brndy, 1.5oz orange juice and .25oz simple syrup to the shaker. Shake your cocktail for 10-15 seconds. Strain the shaker contents into the champagne flute. Top off the flute with 3.5oz champagne. Lastly, garnish your cocktail with an orange twist', image='https://www.makemycocktail.com/images/cocktails/ChampagnePickMeUp.jpg')
@@ -190,42 +221,6 @@ pineapple = Ingredients(ingredient_name='Pineapple', image='https://www.makemyco
 simple_syrup = Ingredients(ingredient_name='Simple Syrup', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Simplesyrup.jpg?ezimgfmt=rs:30x100/rscb9/ng:webp/ngcb9')
 bitters = Ingredients(ingredient_name='Bitters', image='https://www.makemycocktail.com/images/ingredient/Other/Other_Bitters.jpg?ezimgfmt=rs:33x100/rscb9/ng:webp/ngcb9')
 champagne = Ingredients(ingredient_name='Champagne', image='https://www.makemycocktail.com/images/ingredient/Wine/Wine_Champagne.jpg?ezimgfmt=rs:36x100/rscb9/ng:webp/ngcb9')
-
-def add_ing_to_drink(drink_name, ingredient_name):
-    drink= Drinks.query.filter_by(drink_name=drink_name).first()
-    ingredient= Ingredients.query.filter_by(ingredient_name=ingredient_name).first()
-    if drink == None or ingredient == None:
-        print('drink or ing failed')
-        return
-    try:
-        drink_ing= Drink_ingredients(drink_id=drink.id, ingredient_id=ingredient.id)
-        db.session.add(drink_ing)
-        db.session.commit()
-    except:
-        print('failed')
-# add_ing_to_drink('Texas Tea','Lemon')
-# add_ing_to_drink('Texas Tea','Simple Syrup')
-# add_ing_to_drink('Texas Tea','Coke')
-# add_ing_to_drink('Champagne Pick-Me-Up','Brandy')
-# add_ing_to_drink('Champagne Pick-Me-Up','Orange')
-# add_ing_to_drink('Champagne Pick-Me-Up','Simple Syrup')
-# add_ing_to_drink('Champagne Pick-Me-Up','Champagne')
-
-def get_ings_for_drink(drink_name):
-    drink= Drinks.query.filter_by(drink_name=drink_name).first()
-    results= Drink_ingredients.query.filter_by(drink_id=drink.id).all()
-    ings_in_drink=[]
-    for i in results:
-        ings_in_drink.append(Ingredients.query.filter_by(id=i.ingredient_id).first().ingredient_name)
-    return ings_in_drink
-
-def find_cocktails(ingredients):
-    matching_drinks = []
-    for i in Drinks.query.all():
-        ings= get_ings_for_drink(i.drink_name)
-        if set(ings).issubset(set(ingredients)):
-            matching_drinks.append(i)
-    return(matching_drinks)
 
 if __name__ == "__main__":
     app.run(debug=True)

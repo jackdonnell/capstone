@@ -1,7 +1,6 @@
-from app import add_ing_to_drink, find_cocktails
+from app import *
 
-
-find_cocktails()
+find_cocktails(Gin)
 
 
 
